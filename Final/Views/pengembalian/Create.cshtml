@@ -1,0 +1,106 @@
+﻿
+@model Final.Models.tabel_pengembalian
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="row">
+    <div class="box">
+        <div class="col-lg-12">
+            <h2>Create</h2>
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>tabel_pengembalian</h4>
+                    <hr />
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.id_peminjaman, "id_peminjaman", htmlAttributes: new { @class = "control-label col-md-2"})
+                        <div class="col-md-10">
+                            @Html.DropDownList("id_peminjaman", null, htmlAttributes: new { @onchange = "callFunc(this.value)" })
+                            @Html.ValidationMessageFor(model => model.id_peminjaman)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tabel_peminjaman.tanggal_harus_kembali, "id", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("keterangan", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tanggal_kembali, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.tanggal_kembali, new { @type = "date", @class = "form-control datepicker", @onchange = "hitungDenda(this.value)" })
+                            @Html.ValidationMessageFor(model => model.tanggal_kembali, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.denda, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+
+                            @Html.TextBoxFor(model => model.denda, new { @Value = 0, @readonly = "readonly" })
+                            
+                            @Html.ValidationMessageFor(model => model.denda)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+
+
+          
+
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        </div>
+    </div>
+</div>
+<script>
+    function callFunc(value) {
+        keterangan.value = value;
+    }
+
+    function hitungDenda(value) {
+        var date = new Date(value);
+        var lala = keterangan.value.split(" ")[0];
+        lala = lala.replace(/[/]/g, "-");
+        var listDate = lala.split("-");
+        lala = listDate[2] + "-" + listDate[1] + "-" + listDate[0];
+        
+        var date_pembanding = new Date(lala);
+        
+       // $('#tanggal_kembali').val(date.getTime());
+       // $('#denda').val(date_pembanding.getTime());
+        
+        if (date.getTime() > date_pembanding.getTime()) {
+            $('#denda').val(5000);
+        } else {
+            $('#denda').val(0);
+        }
+
+    }
+</script>

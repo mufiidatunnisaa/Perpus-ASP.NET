@@ -1,0 +1,47 @@
+﻿@model Final.Models.tabel_pengembalian
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="row">
+    <div class="box">
+        <div class="col-lg-12">
+            <h2>Details</h2>
+
+            <div>
+                <h4>tabel_pengembalian</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tanggal_kembali)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tanggal_kembali)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.denda)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.denda)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tabel_peminjaman.id_peminjaman)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tabel_peminjaman.id_peminjaman)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id_pengembalian }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

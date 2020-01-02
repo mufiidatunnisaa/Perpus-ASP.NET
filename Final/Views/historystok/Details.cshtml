@@ -1,0 +1,42 @@
+﻿@model Final.Models.tabel_history_stok_buku
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tabel_history_stok_buku</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nama_buku)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nama_buku)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.penerbit_buku)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.penerbit_buku)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tambahan_stok_buku)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tambahan_stok_buku)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_histori_stok }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
